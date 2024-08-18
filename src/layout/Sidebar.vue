@@ -2,7 +2,7 @@
     <aside :class="`${is_expanded ? 'is-expanded' : ''}`">
         <div class="logo-container">
             <img :src="logoURL" alt="Vue" />
-            <span class="text t-logo">Scallop</span>
+            <span class="text t-logo">Scallopc</span>
         </div>
 
         <div class="menu-toggle-wrap">
