@@ -1,7 +1,7 @@
 <template>
-    <div class="w-30">
+    <main>
         <Chart :data="c" :type="'column'" :tooltipCustom="format" />
-    </div>
+    </main>
 </template>
 
 <script setup>
