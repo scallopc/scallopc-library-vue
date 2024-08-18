@@ -1,3 +1,5 @@
 <template>
-    <button>CLica</button>
+    <main>
+        <button>CLica</button>
+    </main>
 </template>

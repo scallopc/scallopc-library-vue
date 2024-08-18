@@ -11,21 +11,7 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: 'MenuRoute',
-    data() {
-        return {
-            menuVisible: true, // Controla a visibilidade do menu
-        }
-    },
-    methods: {
-        togglePosition() {
-            this.menuVisible = !this.menuVisible
-        },
-    },
-}
-</script>
+<script setup></script>
 
 <style scoped>
 .menu-container {

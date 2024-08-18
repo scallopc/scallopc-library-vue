@@ -1,32 +1,48 @@
 <template>
-    <HeaderView />
-    <MenuRoute />
-    <Suspense>
-        <RouterView />
-    </Suspense>
-    <FooterView />
+    <!-- <HeaderView /> -->
+    <Sidebar />
+    <RouterView />
 </template>
 
 <script setup>
-import HeaderView from './layout/HeaderView.vue'
-import FooterView from './layout/FooterView.vue'
-import MenuRoute from './layout/MenuRoute.vue'
+import Sidebar from './layout/Sidebar.vue'
 </script>
 
-<style>
+<style lang="scss">
+@import 'primeflex/primeflex.css';
+
+:root {
+    --primary: #4ade80;
+    --primary-alt: #22c55e;
+    --grey: #64748b;
+    --dark: #1e293b;
+    --dark-alt: #334155;
+    --light: #f1f5f9;
+    --sidebar-width: 300px;
+}
+
 #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
+    display: flex;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    margin: 0;
-    padding: 0;
+    background: var(--light);
 }
-</style>
 
-<style lang="css">
-@import 'primeflex/primeflex.css';
+main {
+    flex: 1 1 0;
+    padding: 2rem;
+
+    @media (max-width: 1024px) {
+        padding-left: 6rem;
+    }
+}
 </style>
