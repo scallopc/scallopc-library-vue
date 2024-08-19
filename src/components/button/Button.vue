@@ -1,3 +1,3 @@
 <template>
-    <span>button</span>
+    <span>buttons</span>
 </template>

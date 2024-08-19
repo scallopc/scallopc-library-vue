@@ -1,5 +1,5 @@
 <template>
-    <aside :class="`${is_expanded ? 'is-expanded' : ''}`">
+    <aside :class="`${is_expanded_menu ? 'is-expanded-menu' : ''}`">
         <div class="logo-container">
             <img :src="logoURL" alt="Vue" />
             <span class="text t-logo">Scallopc</span>
@@ -12,40 +12,26 @@
         </div>
 
         <h3>Menu</h3>
-        <div class="menu">
-            <router-link to="/" class="button">
-                <i class="bi bi-house"></i>
-                <span class="text">Home</span>
-            </router-link>
-            <router-link to="/button" class="button">
-                <i class="bi bi-type-bold"></i>
-                <span class="text">Button</span>
-            </router-link>
-            <router-link to="/chart" class="button">
-                <i class="bi bi-graph-up-arrow"></i>
-                <span class="text">Chart</span>
-            </router-link>
-        </div>
-        <div class="flex"></div>
-
-        <div class="menu">
-            <router-link to="/settings" class="button">
-                <i class="bi bi-gear"></i>
-                <span class="text">Settings</span>
-            </router-link>
-        </div>
+        <MenuItem v-for="item in props.menuTree" :key="item.label" :item="item" :isExpandedMenu="is_expanded_menu" />
     </aside>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import logoURL from '../assets/logo.png'
+import logoURL from '../../assets/logo.png'
+import MenuItem from './MenuItem.vue'
+const props = defineProps({
+    menuTree: {
+        type: Array,
+        required: true,
+    },
+})
 
-const is_expanded = ref(localStorage.getItem('is_expanded') === 'true')
+const is_expanded_menu = ref(localStorage.getItem('is_expanded_menu') === 'true')
 
 const ToggleMenu = () => {
-    is_expanded.value = !is_expanded.value
-    localStorage.setItem('is_expanded', is_expanded.value)
+    is_expanded_menu.value = !is_expanded_menu.value
+    localStorage.setItem('is_expanded_menu', is_expanded_menu.value)
 }
 </script>
 
@@ -59,7 +45,6 @@ aside {
     overflow: hidden;
     min-height: 100vh;
     padding: 1rem;
-
     transition: 0.2s ease-in-out;
 
     .flex {
@@ -112,59 +97,13 @@ aside {
         }
     }
 
-    h3,
-    .button .text {
+    h3 {
         opacity: 0;
         transition: opacity 0.3s ease-in-out;
-    }
-
-    h3 {
         color: var(--grey);
         font-size: 0.875rem;
         margin-bottom: 0.5rem;
         text-transform: uppercase;
-    }
-
-    .menu {
-        margin: 0 -1rem;
-
-        .button {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-
-            transition: 0.2s ease-in-out;
-            padding: 0.5rem 1rem;
-
-            i {
-                font-size: 2rem;
-                color: var(--light);
-                transition: 0.2s ease-in-out;
-            }
-            .text {
-                color: var(--light);
-                transition: 0.2s ease-in-out;
-            }
-
-            &:hover {
-                background-color: var(--dark-alt);
-
-                i,
-                .text {
-                    color: var(--primary);
-                }
-            }
-
-            &.router-link-exact-active {
-                background-color: var(--dark-alt);
-                border-right: 5px solid var(--primary);
-
-                i,
-                .text {
-                    color: var(--primary);
-                }
-            }
-        }
     }
 
     .footer {
@@ -177,7 +116,7 @@ aside {
         }
     }
 
-    &.is-expanded {
+    &.is-expanded-menu {
         width: var(--sidebar-width);
 
         .menu-toggle-wrap {
@@ -198,17 +137,9 @@ aside {
                 transition: display 0.3s ease-out;
             }
         }
-        h3,
-        .button .text {
+        h3 {
             opacity: 1;
         }
-
-        .button {
-            i {
-                margin-right: 1rem;
-            }
-        }
-
         .footer {
             opacity: 0;
         }
