@@ -1,11 +1,38 @@
 <template>
     <!-- <HeaderView /> -->
-    <Sidebar />
+    <SidebarTree :menuTree="menuTree" />
+    <!-- <Sidebar /> -->
     <RouterView />
 </template>
 
 <script setup>
-import Sidebar from './layout/Sidebar.vue'
+import SidebarTree from './layout/sidebarTree/SidebarTree.vue'
+
+const menuTree = [
+    {
+        label: 'Home',
+        icon: 'house',
+        route: '/',
+    },
+    {
+        label: 'Components',
+        icon: 'shop-window',
+        children: [
+            {
+                label: 'Button',
+                route: '/button',
+            },
+            {
+                label: 'Chart',
+                route: '/chart',
+            },
+        ],
+    },
+    {
+        label: 'Settings',
+        icon: 'gear',
+    },
+]
 </script>
 
 <style lang="scss">
