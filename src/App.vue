@@ -29,8 +29,9 @@ const menuTree = [
         ],
     },
     {
-        label: 'Settings',
+        label: 'App',
         icon: 'gear',
+        route: '/application',
     },
 ]
 </script>
